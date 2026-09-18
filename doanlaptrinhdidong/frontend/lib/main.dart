@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'screens/admin/admin_dashboard.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const AdminDashboard());
 }
 
 class MyApp extends StatelessWidget {
