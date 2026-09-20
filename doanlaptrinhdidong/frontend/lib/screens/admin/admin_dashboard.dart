@@ -43,11 +43,11 @@ class AdminDashboard extends StatelessWidget {
                       children: [
                         IconButton(
                           onPressed: () {},
-                          icon: const Icon(Icons.menu, color: Colors.white, size: 22),
+                          icon: const Icon(Icons.menu, color: Colors.white, size: 24),
                         ),
                         IconButton(
                           onPressed: () {},
-                          icon: const Icon(Icons.notifications, color: Colors.white, size: 22),
+                          icon: const Icon(Icons.notifications, color: Colors.white, size: 24),
                         ),
                       ],
                     ),
