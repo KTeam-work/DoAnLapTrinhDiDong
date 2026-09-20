@@ -64,6 +64,17 @@ class _UserState extends State<User> {
              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
            ),
 
+           actions: [
+             IconButton(
+               onPressed: () {},
+               icon: const Icon(Icons.menu, color: Colors.white, size: 24),
+             ),
+             IconButton(
+               onPressed: () {},
+               icon: const Icon(Icons.notifications, color: Colors.white, size: 24),
+             ),
+           ],
+
 
          ),
          body: SafeArea(
@@ -159,7 +170,7 @@ class _UserState extends State<User> {
          ),
 
          bottomNavigationBar: BottomNavigationBar(
-           currentIndex: 0,
+           currentIndex: 3,
            type: BottomNavigationBarType.fixed,
            selectedItemColor: AppColors.primaryGreen,
            unselectedItemColor: Colors.grey,
@@ -267,5 +278,5 @@ class DsanhTK extends StatelessWidget
       },
     );
   }
-
 }
+

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'screens/admin/admin_dashboard.dart';
 import 'screens/admin/users_manage.dart';
-
+import 'screens/admin/rewview_new.dart';
 void main() {
-  runApp(const  User());
+  runApp(const  review());
 }
 
 class MyApp extends StatelessWidget {
