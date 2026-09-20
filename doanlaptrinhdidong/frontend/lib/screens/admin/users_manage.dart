@@ -157,6 +157,22 @@ class _UserState extends State<User> {
              ],
            ),
          ),
+
+         bottomNavigationBar: BottomNavigationBar(
+           currentIndex: 0,
+           type: BottomNavigationBarType.fixed,
+           selectedItemColor: AppColors.primaryGreen,
+           unselectedItemColor: Colors.grey,
+           selectedFontSize: 12,
+           unselectedFontSize: 12,
+           onTap: (index) {},
+           items: const [
+             BottomNavigationBarItem(icon: Icon(Icons.grid_view_rounded), label: "Dashboard"),
+             BottomNavigationBarItem(icon: Icon(Icons.article_outlined), label: 'Quản lý'),
+             BottomNavigationBarItem(icon: Icon(Icons.show_chart_rounded), label: 'Thống kê'),
+             BottomNavigationBarItem(icon: Icon(Icons.person_outline_rounded), label: 'Tài khoản'),
+           ],
+         ),
        ),
     );
   }
@@ -247,6 +263,7 @@ class DsanhTK extends StatelessWidget
 
           ),
         );
+
       },
     );
   }
