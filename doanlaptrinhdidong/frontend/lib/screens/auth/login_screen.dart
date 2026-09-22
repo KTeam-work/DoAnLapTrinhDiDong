@@ -25,16 +25,16 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  // =========================
+  // ==================================================
   // QUÊN MẬT KHẨU
-  // =========================
+  // ==================================================
   void _showForgotPasswordDialog() {
     final resetEmailController = TextEditingController();
     final resetFormKey = GlobalKey<FormState>();
 
     showDialog(
       context: context,
-      builder: (context) {
+      builder: (dialogContext) {
         return AlertDialog(
           backgroundColor: AppColors.cardSurface,
           shape: RoundedRectangleBorder(
@@ -71,9 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 1.4,
                   ),
                 ),
-
                 const SizedBox(height: 18),
-
                 TextFormField(
                   controller: resetEmailController,
                   keyboardType: TextInputType.emailAddress,
@@ -116,7 +114,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     if (value == null || value.trim().isEmpty) {
                       return 'Vui lòng nhập email hoặc SĐT';
                     }
-
                     return null;
                   },
                 ),
@@ -125,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           actions: [
             TextButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => Navigator.pop(dialogContext),
               child: const Text(
                 'Hủy',
                 style: TextStyle(
@@ -144,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               onPressed: () {
                 if (resetFormKey.currentState!.validate()) {
-                  Navigator.pop(context);
+                  Navigator.pop(dialogContext);
 
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
@@ -174,9 +171,9 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  // =========================
-  // INPUT STYLE
-  // =========================
+  // ==================================================
+  // STYLE INPUT
+  // ==================================================
   InputDecoration _inputDecoration({
     required String hintText,
     required IconData prefixIcon,
@@ -184,33 +181,26 @@ class _LoginScreenState extends State<LoginScreen> {
   }) {
     return InputDecoration(
       hintText: hintText,
-
       hintStyle: const TextStyle(
         color: AppColors.textSecondary,
         fontSize: 13,
       ),
-
       prefixIcon: Icon(
         prefixIcon,
         color: AppColors.textSecondary,
         size: 21,
       ),
-
       suffixIcon: suffixIcon,
-
       filled: true,
       fillColor: AppColors.background,
-
       contentPadding: const EdgeInsets.symmetric(
         horizontal: 16,
         vertical: 16,
       ),
-
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
         borderSide: BorderSide.none,
       ),
-
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
         borderSide: const BorderSide(
@@ -218,7 +208,6 @@ class _LoginScreenState extends State<LoginScreen> {
           width: 1,
         ),
       ),
-
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
         borderSide: const BorderSide(
@@ -226,14 +215,12 @@ class _LoginScreenState extends State<LoginScreen> {
           width: 1.5,
         ),
       ),
-
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
         borderSide: const BorderSide(
           color: Colors.redAccent,
         ),
       ),
-
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
         borderSide: const BorderSide(
@@ -244,81 +231,104 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  // =========================
+  // ==================================================
   // BUILD
-  // =========================
+  // ==================================================
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: AppColors.background,
-
       body: Stack(
         children: [
           // ==================================================
-          // PHẦN NỀN XANH PHÍA TRÊN
+          // ẢNH NỀN
           // ==================================================
           Container(
             height: screenHeight * 0.43,
             width: double.infinity,
-            color: AppColors.primaryGreen,
-
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  'frontend/assets/images/login_background.jpg',
+                ),
+                fit: BoxFit.cover,
+              ),
+            ),
             child: SafeArea(
-              child: Column(
-                children: [
-                  const SizedBox(height: 28),
-
-                  // LOGO
-                  Container(
-                    width: 92,
-                    height: 92,
-                    decoration: BoxDecoration(
-                      color: AppColors.cardSurface,
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.12),
-                          blurRadius: 18,
-                          offset: const Offset(0, 8),
-                        ),
-                      ],
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // LOGO
+                    Container(
+                      width: 92,
+                      height: 92,
+                      decoration: BoxDecoration(
+                        color: AppColors.cardSurface,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 18,
+                            offset: Offset(0, 8),
+                          ),
+                        ],
+                      ),
+                      child: const Icon(
+                        Icons.home_work_rounded,
+                        size: 48,
+                        color: AppColors.primaryGreen,
+                      ),
                     ),
-                    child: const Icon(
-                      Icons.home_work_rounded,
-                      size: 48,
-                      color: AppColors.primaryGreen,
+
+                    const SizedBox(height: 18),
+
+                    // TÊN APP
+                    const Text(
+                      'TRỌ ƠI',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 27,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: 1.5,
+                        shadows: [
+                          Shadow(
+                            color: Colors.black54,
+                            blurRadius: 7,
+                            offset: Offset(0, 2),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
 
-                  const SizedBox(height: 18),
+                    const SizedBox(height: 6),
 
-                  const Text(
-                    'TRỌ ƠI',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 27,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 1.5,
+                    // SLOGAN
+                    const Text(
+                      'Tìm phòng dễ dàng - Sống thoải mái',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                        shadows: [
+                          Shadow(
+                            color: Colors.black54,
+                            blurRadius: 6,
+                            offset: Offset(0, 2),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-
-                  const SizedBox(height: 6),
-
-                  const Text(
-                    'Tìm phòng dễ dàng - Sống thoải mái',
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 13,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
 
           // ==================================================
-          // CARD LOGIN
+          // CARD ĐĂNG NHẬP
           // ==================================================
           SafeArea(
             child: SingleChildScrollView(
@@ -328,22 +338,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 right: 20,
                 bottom: 30,
               ),
-
               child: Container(
                 width: double.infinity,
-
                 padding: const EdgeInsets.fromLTRB(
                   22,
                   28,
                   22,
                   24,
                 ),
-
                 decoration: BoxDecoration(
                   color: AppColors.cardSurface,
-
                   borderRadius: BorderRadius.circular(28),
-
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.10),
@@ -352,16 +357,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
-
                 child: Form(
                   key: _formKey,
-
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      // ==================================================
-                      // TITLE
-                      // ==================================================
                       const Text(
                         'Đăng nhập',
                         textAlign: TextAlign.center,
@@ -385,9 +385,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       const SizedBox(height: 28),
 
-                      // ==================================================
-                      // EMAIL / SĐT
-                      // ==================================================
                       const Text(
                         'Email hoặc số điện thoại',
                         style: TextStyle(
@@ -402,27 +399,21 @@ class _LoginScreenState extends State<LoginScreen> {
                       TextFormField(
                         controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
-
                         decoration: _inputDecoration(
                           hintText: 'Nhập email hoặc số điện thoại',
                           prefixIcon: Icons.person_outline_rounded,
                         ),
-
                         validator: (value) {
                           if (value == null ||
                               value.trim().isEmpty) {
                             return 'Vui lòng nhập Email hoặc SĐT';
                           }
-
                           return null;
                         },
                       ),
 
                       const SizedBox(height: 18),
 
-                      // ==================================================
-                      // PASSWORD
-                      // ==================================================
                       const Text(
                         'Mật khẩu',
                         style: TextStyle(
@@ -437,11 +428,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       TextFormField(
                         controller: _passwordController,
                         obscureText: _obscurePassword,
-
                         decoration: _inputDecoration(
                           hintText: 'Nhập mật khẩu',
                           prefixIcon: Icons.lock_outline_rounded,
-
                           suffixIcon: IconButton(
                             onPressed: () {
                               setState(() {
@@ -449,55 +438,43 @@ class _LoginScreenState extends State<LoginScreen> {
                                     !_obscurePassword;
                               });
                             },
-
                             icon: Icon(
                               _obscurePassword
                                   ? Icons.visibility_off_outlined
                                   : Icons.visibility_outlined,
-
                               color: AppColors.textSecondary,
                               size: 20,
                             ),
                           ),
                         ),
-
                         validator: (value) {
-                          if (value == null ||
-                              value.isEmpty) {
+                          if (value == null || value.isEmpty) {
                             return 'Vui lòng nhập mật khẩu';
                           }
-
                           return null;
                         },
                       ),
 
                       const SizedBox(height: 12),
 
-                      // ==================================================
                       // GHI NHỚ + QUÊN MẬT KHẨU
-                      // ==================================================
                       Row(
                         mainAxisAlignment:
                             MainAxisAlignment.spaceBetween,
-
                         children: [
                           Row(
                             children: [
                               SizedBox(
                                 width: 24,
                                 height: 24,
-
                                 child: Checkbox(
                                   value: _rememberMe,
-
                                   activeColor:
                                       AppColors.primaryGreen,
-
                                   shape: RoundedRectangleBorder(
                                     borderRadius:
                                         BorderRadius.circular(5),
                                   ),
-
                                   onChanged: (value) {
                                     setState(() {
                                       _rememberMe =
@@ -506,9 +483,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   },
                                 ),
                               ),
-
                               const SizedBox(width: 6),
-
                               const Text(
                                 'Ghi nhớ đăng nhập',
                                 style: TextStyle(
@@ -522,7 +497,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
                           GestureDetector(
                             onTap: _showForgotPasswordDialog,
-
                             child: const Text(
                               'Quên mật khẩu?',
                               style: TextStyle(
@@ -538,37 +512,27 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       const SizedBox(height: 22),
 
-                      // ==================================================
-                      // BUTTON LOGIN
-                      // ==================================================
+                      // NÚT ĐĂNG NHẬP
                       SizedBox(
                         height: 52,
-
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor:
                                 AppColors.accentYellow,
-
                             foregroundColor:
                                 AppColors.textPrimary,
-
                             elevation: 2,
-
-                            shape:
-                                RoundedRectangleBorder(
+                            shape: RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.circular(14),
                             ),
                           ),
-
                           onPressed: () {
                             if (_formKey.currentState!
                                 .validate()) {
-                              // TODO:
-                              // Xử lý đăng nhập API
+                              // TODO: Xử lý đăng nhập API
                             }
                           },
-
                           child: const Text(
                             'ĐĂNG NHẬP',
                             style: TextStyle(
@@ -581,9 +545,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       const SizedBox(height: 24),
 
-                      // ==================================================
                       // HOẶC
-                      // ==================================================
                       Row(
                         children: [
                           Expanded(
@@ -591,10 +553,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               color: Colors.grey.shade300,
                             ),
                           ),
-
                           const Padding(
-                            padding:
-                                EdgeInsets.symmetric(
+                            padding: EdgeInsets.symmetric(
                               horizontal: 12,
                             ),
                             child: Text(
@@ -603,12 +563,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 fontSize: 11,
                                 color:
                                     AppColors.textSecondary,
-                                fontWeight:
-                                    FontWeight.w600,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ),
-
                           Expanded(
                             child: Divider(
                               color: Colors.grey.shade300,
@@ -619,13 +577,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       const SizedBox(height: 20),
 
-                      // ==================================================
                       // ĐĂNG KÝ
-                      // ==================================================
                       Row(
                         mainAxisAlignment:
                             MainAxisAlignment.center,
-
                         children: [
                           const Text(
                             'Chưa có tài khoản? ',
@@ -635,26 +590,22 @@ class _LoginScreenState extends State<LoginScreen> {
                               fontSize: 13,
                             ),
                           ),
-
                           GestureDetector(
                             onTap: () {
                               Navigator.push(
                                 context,
-
                                 MaterialPageRoute(
                                   builder: (context) =>
                                       const RegisterScreen(),
                                 ),
                               );
                             },
-
                             child: const Text(
                               'Đăng ký ngay',
                               style: TextStyle(
                                 color:
                                     AppColors.primaryGreen,
-                                fontWeight:
-                                    FontWeight.bold,
+                                fontWeight: FontWeight.bold,
                                 fontSize: 13,
                               ),
                             ),

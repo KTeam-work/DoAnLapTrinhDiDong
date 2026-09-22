@@ -94,6 +94,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   // =========================================================
+  // QUAY VỀ LOGIN
+  // =========================================================
+  void _goToLogin() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LoginScreen(),
+      ),
+    );
+  }
+
+  // =========================================================
   // BUILD
   // =========================================================
   @override
@@ -102,29 +114,34 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     return Scaffold(
       backgroundColor: AppColors.background,
-
       body: Stack(
         children: [
           // =====================================================
-          // HEADER
+          // HEADER - ẢNH NỀN
           // =====================================================
           Container(
             height: screenHeight * 0.30,
             width: double.infinity,
-            color: AppColors.primaryGreen,
-
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  'frontend/assets/images/login_background.jpg',
+                ),
+                fit: BoxFit.cover,
+              ),
+            ),
             child: SafeArea(
               child: Column(
                 children: [
                   const SizedBox(height: 8),
 
-                  // NÚT QUAY LẠI
+                  // =================================================
+                  // NÚT < QUAY VỀ LOGIN
+                  // =================================================
                   Align(
                     alignment: Alignment.centerLeft,
                     child: IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
+                      onPressed: _goToLogin,
                       icon: const Icon(
                         Icons.arrow_back_ios_new_rounded,
                         color: Colors.white,
@@ -135,7 +152,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                   const SizedBox(height: 2),
 
+                  // =================================================
                   // LOGO
+                  // =================================================
                   Container(
                     width: 68,
                     height: 68,
@@ -144,7 +163,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.12),
+                          color: Colors.black.withOpacity(0.28),
                           blurRadius: 15,
                           offset: const Offset(0, 6),
                         ),
@@ -159,6 +178,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                   const SizedBox(height: 10),
 
+                  // =================================================
+                  // TÊN APP
+                  // =================================================
                   const Text(
                     'TRỌ ƠI',
                     style: TextStyle(
@@ -166,6 +188,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       fontSize: 22,
                       fontWeight: FontWeight.w800,
                       letterSpacing: 1.4,
+                      shadows: [
+                        Shadow(
+                          color: Colors.black54,
+                          blurRadius: 6,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -184,17 +213,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 right: 20,
                 bottom: 30,
               ),
-
               child: Container(
                 width: double.infinity,
-
                 padding: const EdgeInsets.fromLTRB(
                   22,
                   26,
                   22,
                   24,
                 ),
-
                 decoration: BoxDecoration(
                   color: AppColors.cardSurface,
                   borderRadius: BorderRadius.circular(28),
@@ -206,18 +232,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ],
                 ),
-
                 child: Form(
                   key: _formKey,
-
                   child: Column(
-                    crossAxisAlignment:
-                        CrossAxisAlignment.stretch,
-
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      // =====================================================
+                      // =================================================
                       // TITLE
-                      // =====================================================
+                      // =================================================
                       const Text(
                         'Tạo tài khoản',
                         textAlign: TextAlign.center,
@@ -241,9 +263,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                       const SizedBox(height: 25),
 
-                      // =====================================================
+                      // =================================================
                       // VAI TRÒ
-                      // =====================================================
+                      // =================================================
                       const Text(
                         'Bạn là',
                         style: TextStyle(
@@ -267,19 +289,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               child: _buildRoleCard(
                                 title: 'Người thuê',
                                 roleValue: 'tenant',
-                                icon:
-                                    Icons.person_search_rounded,
+                                icon: Icons.person_search_rounded,
                               ),
                             ),
-
                             const SizedBox(width: 5),
-
                             Expanded(
                               child: _buildRoleCard(
                                 title: 'Chủ trọ',
                                 roleValue: 'owner',
-                                icon:
-                                    Icons.real_estate_agent_rounded,
+                                icon: Icons.real_estate_agent_rounded,
                               ),
                             ),
                           ],
@@ -288,9 +306,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                       const SizedBox(height: 22),
 
-                      // =====================================================
+                      // =================================================
                       // HỌ VÀ TÊN
-                      // =====================================================
+                      // =================================================
                       const Text(
                         'Họ và tên',
                         style: TextStyle(
@@ -306,24 +324,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         controller: _nameController,
                         decoration: _inputDecoration(
                           hintText: 'Ví dụ: Nguyễn Văn A',
-                          prefixIcon:
-                              Icons.person_outline_rounded,
+                          prefixIcon: Icons.person_outline_rounded,
                         ),
                         validator: (value) {
                           if (value == null ||
                               value.trim().isEmpty) {
                             return 'Vui lòng nhập họ và tên';
                           }
-
                           return null;
                         },
                       ),
 
                       const SizedBox(height: 16),
 
-                      // =====================================================
+                      // =================================================
                       // EMAIL
-                      // =====================================================
+                      // =================================================
                       const Text(
                         'Địa chỉ Email',
                         style: TextStyle(
@@ -337,13 +353,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                       TextFormField(
                         controller: _emailController,
-                        keyboardType:
-                            TextInputType.emailAddress,
+                        keyboardType: TextInputType.emailAddress,
                         decoration: _inputDecoration(
-                          hintText:
-                              'nguyenvana@gmail.com',
-                          prefixIcon:
-                              Icons.mail_outline_rounded,
+                          hintText: 'nguyenvana@gmail.com',
+                          prefixIcon: Icons.mail_outline_rounded,
                         ),
                         validator: (value) {
                           if (value == null ||
@@ -363,9 +376,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                       const SizedBox(height: 16),
 
-                      // =====================================================
+                      // =================================================
                       // SỐ ĐIỆN THOẠI
-                      // =====================================================
+                      // =================================================
                       const Text(
                         'Số điện thoại',
                         style: TextStyle(
@@ -382,8 +395,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         keyboardType: TextInputType.phone,
                         decoration: _inputDecoration(
                           hintText: '0901234567',
-                          prefixIcon:
-                              Icons.phone_iphone_rounded,
+                          prefixIcon: Icons.phone_iphone_rounded,
                         ),
                         validator: (value) {
                           if (value == null ||
@@ -397,9 +409,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                       const SizedBox(height: 16),
 
-                      // =====================================================
+                      // =================================================
                       // MẬT KHẨU
-                      // =====================================================
+                      // =================================================
                       const Text(
                         'Mật khẩu',
                         style: TextStyle(
@@ -416,8 +428,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         obscureText: _obscurePassword,
                         decoration: _inputDecoration(
                           hintText: 'Tối thiểu 6 ký tự',
-                          prefixIcon:
-                              Icons.lock_outline_rounded,
+                          prefixIcon: Icons.lock_outline_rounded,
                           suffixIcon: IconButton(
                             onPressed: () {
                               setState(() {
@@ -427,12 +438,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             },
                             icon: Icon(
                               _obscurePassword
-                                  ? Icons
-                                      .visibility_off_outlined
-                                  : Icons
-                                      .visibility_outlined,
-                              color:
-                                  AppColors.textSecondary,
+                                  ? Icons.visibility_off_outlined
+                                  : Icons.visibility_outlined,
+                              color: AppColors.textSecondary,
                             ),
                           ),
                         ),
@@ -448,9 +456,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                       const SizedBox(height: 16),
 
-                      // =====================================================
+                      // =================================================
                       // XÁC NHẬN MẬT KHẨU
-                      // =====================================================
+                      // =================================================
                       const Text(
                         'Xác nhận mật khẩu',
                         style: TextStyle(
@@ -463,14 +471,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       const SizedBox(height: 8),
 
                       TextFormField(
-                        controller:
-                            _confirmPasswordController,
-                        obscureText:
-                            _obscureConfirmPassword,
+                        controller: _confirmPasswordController,
+                        obscureText: _obscureConfirmPassword,
                         decoration: _inputDecoration(
                           hintText: 'Nhập lại mật khẩu',
-                          prefixIcon:
-                              Icons.lock_reset_rounded,
+                          prefixIcon: Icons.lock_reset_rounded,
                           suffixIcon: IconButton(
                             onPressed: () {
                               setState(() {
@@ -480,12 +485,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             },
                             icon: Icon(
                               _obscureConfirmPassword
-                                  ? Icons
-                                      .visibility_off_outlined
-                                  : Icons
-                                      .visibility_outlined,
-                              color:
-                                  AppColors.textSecondary,
+                                  ? Icons.visibility_off_outlined
+                                  : Icons.visibility_outlined,
+                              color: AppColors.textSecondary,
                             ),
                           ),
                         ),
@@ -506,9 +508,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                       const SizedBox(height: 24),
 
-                      // =====================================================
+                      // =================================================
                       // BUTTON ĐĂNG KÝ
-                      // =====================================================
+                      // =================================================
                       SizedBox(
                         height: 52,
                         child: ElevatedButton(
@@ -548,9 +550,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                       const SizedBox(height: 20),
 
-                      // =====================================================
+                      // =================================================
                       // QUAY VỀ LOGIN
-                      // =====================================================
+                      // =================================================
                       Row(
                         mainAxisAlignment:
                             MainAxisAlignment.center,
@@ -558,29 +560,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           const Text(
                             'Đã có tài khoản? ',
                             style: TextStyle(
-                              color:
-                                  AppColors.textSecondary,
+                              color: AppColors.textSecondary,
                               fontSize: 13,
                             ),
                           ),
-
                           GestureDetector(
-                            onTap: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const LoginScreen(),
-                                ),
-                              );
-                            },
+                            onTap: _goToLogin,
                             child: const Text(
                               'Đăng nhập',
                               style: TextStyle(
-                                color:
-                                    AppColors.primaryGreen,
-                                fontWeight:
-                                    FontWeight.bold,
+                                color: AppColors.primaryGreen,
+                                fontWeight: FontWeight.bold,
                                 fontSize: 13,
                               ),
                             ),
@@ -616,8 +606,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        padding:
-            const EdgeInsets.symmetric(vertical: 12),
+        padding: const EdgeInsets.symmetric(
+          vertical: 12,
+        ),
         decoration: BoxDecoration(
           color: isSelected
               ? AppColors.primaryGreen
@@ -634,9 +625,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ? Colors.white
                   : AppColors.textSecondary,
             ),
-
             const SizedBox(width: 7),
-
             Text(
               title,
               style: TextStyle(
@@ -653,4 +642,3 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 }
-
