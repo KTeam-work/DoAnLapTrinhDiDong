@@ -197,7 +197,7 @@ class OwnerDashboard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             _buildNavItem(Icons.home, 'Trang chủ', true, () {}),
-            _buildNavItem(Icons.apartment, 'Phòng', false, () {
+            _buildNavItem(Icons.apartment, 'Tòa nhà', false, () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
