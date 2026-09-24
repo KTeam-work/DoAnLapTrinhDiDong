@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-
-
-
-void main() {
-  runApp(const  MyApp());
-
 import 'screens/admin/admin_dashboard.dart';
 import 'screens/admin/users_manage.dart';
-import 'screens/admin/rewview_new.dart';
-void main() {
-  runApp(const  review());
+import 'screens/owner/owner_dashboard.dart';
+import 'screens/owner/contracts_manage.dart';
 
+
+void main() {
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
