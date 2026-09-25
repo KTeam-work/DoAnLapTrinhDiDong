@@ -3,7 +3,7 @@ import 'screens/admin/admin_dashboard.dart';
 import 'screens/admin/users_manage.dart';
 import 'screens/owner/owner_dashboard.dart';
 import 'screens/owner/contracts_manage.dart';
-
+import 'screens/owner/contract_form.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: Contract_form(),
     );
   }
 }
