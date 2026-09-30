@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'screens/owner/utility_readings.dart';
+import 'screens/owner/utility_history.dart';
+import 'screens/tenant/utility_history_ten.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: InvoiceCreateScreen(),
+      home: TenantUtilityScreen(),
     );
   }
 }
