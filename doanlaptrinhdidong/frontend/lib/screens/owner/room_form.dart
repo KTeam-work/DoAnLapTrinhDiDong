@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-class PropertyFormScreen extends StatefulWidget {
-  const PropertyFormScreen({super.key});
+class RoomFormScreen extends StatefulWidget {
+  const RoomFormScreen({super.key});
 
   @override
-  State<PropertyFormScreen> createState() => _PropertyFormScreenState();
+  State<RoomFormScreen> createState() => _RoomFormScreenState();
 }
 
-class _PropertyFormScreenState extends State<PropertyFormScreen> {
+class _RoomFormScreenState extends State<RoomFormScreen> {
   final Color primaryColor = const Color(0xFF1B5E55);
   final _formKey = GlobalKey<FormState>();
 
-  // Trạng thái tòa nhà mặc định
-  String _selectedStatus = 'Đang hoạt động';
+  // Trạng thái phòng mặc định
+  String _selectedStatus = 'Còn trống';
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class _PropertyFormScreenState extends State<PropertyFormScreen> {
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
-          'Thêm Bất động sản mới',
+          'Thêm phòng mới',
           style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
@@ -46,79 +46,71 @@ class _PropertyFormScreenState extends State<PropertyFormScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Tải ảnh đại diện tòa nhà
-                    _buildSectionTitle('Hình ảnh Tòa nhà / Bất động sản'),
+                    // tải ảnh phòng lên
+                    _buildSectionTitle('Hình ảnh phòng'),
                     const SizedBox(height: 8),
                     _buildImagePickerSection(),
                     const SizedBox(height: 20),
 
-                    // Thông tin cơ bản
+                    // thông tin cơ bản
                     _buildSectionTitle('Thông tin cơ bản'),
                     const SizedBox(height: 8),
                     _buildCardGroup(
                       children: [
                         _buildTextField(
-                          label: 'Tên Tòa nhà / Dãy trọ',
-                          hint: 'VD: Chung cư Mini Q7',
-                          icon: Icons.apartment_outlined,
+                          label: 'Tên phòng',
+                          hint: 'VD: Phòng 101',
+                          icon: Icons.meeting_room_outlined,
                         ),
                         const SizedBox(height: 16),
-                        _buildTextField(
-                          label: 'Địa chỉ chi tiết',
-                          hint:
-                              'VD: 123 Nguyễn Thị Thập, P. Tân Quy, Q. 7, TP.HCM',
-                          icon: Icons.location_on_outlined,
-                          maxLines: 2,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-
-                    // Quy mô tòa nhà
-                    _buildSectionTitle('Quy mô bất động sản'),
-                    const SizedBox(height: 8),
-                    _buildCardGroup(
-                      children: [
                         Row(
                           children: [
                             Expanded(
                               child: _buildTextField(
-                                label: 'Tổng số tầng',
-                                hint: '4',
+                                label: 'Diện tích',
+                                hint: '25',
+                                suffixText: 'm²',
                                 keyboardType: TextInputType.number,
-                                icon: Icons.layers_outlined,
+                                icon: Icons.square_foot_outlined,
                               ),
                             ),
                             const SizedBox(width: 12),
                             Expanded(
                               child: _buildTextField(
-                                label: 'Số lượng phòng',
-                                hint: '20',
+                                label: 'Tầng thứ',
+                                hint: '2',
                                 keyboardType: TextInputType.number,
-                                icon: Icons.meeting_room_outlined,
+                                icon: Icons.layers_outlined,
                               ),
                             ),
                           ],
+                        ),
+                        const SizedBox(height: 16),
+                        _buildTextField(
+                          label: 'Giá thuê phòng',
+                          hint: '4.000.000',
+                          suffixText: 'đ/tháng',
+                          keyboardType: TextInputType.number,
+                          icon: Icons.payments_outlined,
                         ),
                       ],
                     ),
                     const SizedBox(height: 20),
 
-                    // Trạng thái hoạt động
-                    _buildSectionTitle('Trạng thái hoạt động'),
+                    // trạng thái phòng
+                    _buildSectionTitle('Trạng thái phòng'),
                     const SizedBox(height: 8),
                     _buildStatusSelector(),
                     const SizedBox(height: 20),
 
-                    // Mô tả tiện ích
-                    _buildSectionTitle('Mô tả & Tiện ích chung'),
+                    // mô tả
+                    _buildSectionTitle('Mô tả thêm'),
                     const SizedBox(height: 8),
                     _buildCardGroup(
                       children: [
                         _buildTextField(
-                          label: 'Mô tả tiện ích hoặc quy định',
-                          hint:
-                              'VD: Có thang máy, ra vào cổng vân tay, giờ giấc tự do, bảo vệ 24/7...',
+                          label: 'Mô tả ngắn hoặc ghi chú',
+                          hint: 'Nhập thông tin nội thất, điện nước...',
                           maxLines: 3,
                           icon: Icons.description_outlined,
                         ),
@@ -129,7 +121,7 @@ class _PropertyFormScreenState extends State<PropertyFormScreen> {
               ),
             ),
 
-            // Nút Thêm Bất động sản
+            // thêm phòng ngay
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
@@ -160,7 +152,7 @@ class _PropertyFormScreenState extends State<PropertyFormScreen> {
                       elevation: 0,
                     ),
                     child: const Text(
-                      'Thêm bất động sản',
+                      'Thêm phòng ngay',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -177,7 +169,7 @@ class _PropertyFormScreenState extends State<PropertyFormScreen> {
     );
   }
 
-  // Tiêu đề cho mỗi Section
+  //tiêu đề cho mỗi Section
   Widget _buildSectionTitle(String title) {
     return Text(
       title,
@@ -189,7 +181,7 @@ class _PropertyFormScreenState extends State<PropertyFormScreen> {
     );
   }
 
-  // Khung card nhóm các input
+  //khung card nhóm các input
   Widget _buildCardGroup({required List<Widget> children}) {
     return Container(
       padding: const EdgeInsets.all(16),
@@ -208,7 +200,7 @@ class _PropertyFormScreenState extends State<PropertyFormScreen> {
     );
   }
 
-  // Hàm ô nhập dữ liệu
+  //hàm ô nhập dữ liệu
   Widget _buildTextField({
     required String label,
     required String hint,
@@ -249,7 +241,7 @@ class _PropertyFormScreenState extends State<PropertyFormScreen> {
     );
   }
 
-  // Khu vực tải ảnh đại diện bất động sản
+  // Khu vực tải ảnh phòng
   Widget _buildImagePickerSection() {
     return Container(
       width: double.infinity,
@@ -268,7 +260,7 @@ class _PropertyFormScreenState extends State<PropertyFormScreen> {
           ),
           const SizedBox(height: 8),
           const Text(
-            'Thêm hình ảnh tổng quan tòa nhà',
+            'Thêm hình ảnh thực tế phòng',
             style: TextStyle(
               fontSize: 13,
               fontWeight: FontWeight.w600,
@@ -285,9 +277,9 @@ class _PropertyFormScreenState extends State<PropertyFormScreen> {
     );
   }
 
-  // Khung chọn trạng thái tòa nhà
+  //Khung chọn trạng thái phòng
   Widget _buildStatusSelector() {
-    final statuses = ['Đang hoạt động', 'Bảo trì'];
+    final statuses = ['Còn trống', 'Đang cho thuê', 'Bảo trì'];
 
     return Container(
       width: double.infinity,
@@ -308,7 +300,7 @@ class _PropertyFormScreenState extends State<PropertyFormScreen> {
             labelStyle: TextStyle(
               color: isSelected ? Colors.white : Colors.black87,
               fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-              fontSize: 13,
+              fontSize: 12,
             ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
