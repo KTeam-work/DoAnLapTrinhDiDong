@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/owner/utility_history.dart';
-import 'screens/tenant/utility_history_ten.dart';
+import 'screens/owner/termination_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: TenantUtilityScreen(),
+      home: ContractLiquidationScreen(),
     );
   }
 }
