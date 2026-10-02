@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/owner/utility_history.dart';
-import 'screens/owner/termination_screen.dart';
-import 'screens/owner/maintenance_manage.dart';
-import 'screens/owner/maintenance_detail.dart';
+import 'screens/admin/content_moderation.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,7 +31,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: MaintenanceDetailScreen(),
+      home:RoomApprovalDetailScreen(),
     );
   }
 }
