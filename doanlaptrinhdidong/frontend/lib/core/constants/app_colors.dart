@@ -19,4 +19,8 @@ class AppColors {
   // Màu chữ
   static const Color textPrimary = Color(0xFF1F2937);
   static const Color textSecondary = Color(0xFF6B7280);
+
+  // Màu bổ sung cho Cảnh báo / Hóa đơn / Khiếu nại
+  static const Color warningOrange = Color(0xFFFF6D00); // Nút xuất Excel / Báo khiếu nại
+  static const Color borderLight = Color(0xFFE5E7EB);    // Viền nhẹ
 }
