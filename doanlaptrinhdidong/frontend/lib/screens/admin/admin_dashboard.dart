@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import '../../core/constants/app_colors.dart';
+import '../../route/app_routes.dart';
 
 class AdminDashboard extends StatelessWidget {
   const AdminDashboard({super.key});
@@ -213,7 +214,19 @@ class AdminDashboard extends StatelessWidget {
           unselectedItemColor: Colors.grey,
           selectedFontSize: 12,
           unselectedFontSize: 12,
-          onTap: (index) {},
+          onTap: (index) {
+            switch(index){
+              case 0:
+                Navigator.pushNamed(context, AppRoutes.adminDashboard);
+                break;
+              case 1:
+                Navigator.pushNamed(context, AppRoutes.rewview);
+                break;
+              case 3:
+                Navigator.pushNamed(context, AppRoutes.usersManage);
+                break;
+            }
+          },
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.grid_view_rounded), label: "Dashboard"),
             BottomNavigationBarItem(icon: Icon(Icons.article_outlined), label: 'Quản lý'),

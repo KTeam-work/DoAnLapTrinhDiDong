@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../core/constants/app_colors.dart';
 import '../../widgets/owner/contract_card.dart';
+import '../../route/app_routes.dart';
+import 'properties_manage.dart';
 
 
 class Contracts_manager extends StatefulWidget
@@ -34,6 +36,18 @@ class HienThiQuanLyHopDong extends State<Contracts_manager>{
         ],
       ),
 
+
+      floatingActionButton: FloatingActionButton.extended(
+          onPressed: (){
+            Navigator.pushNamed(context, AppRoutes.contractForm);
+          },
+          backgroundColor: const Color(0xFFFFA726),elevation: 4,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),label: const Text("Tạo hợp đồng",style: TextStyle(
+        color: Colors.black87,
+        fontWeight: FontWeight.bold,
+        fontSize: 12,
+      ),)
+      ),
+
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -45,6 +59,12 @@ class HienThiQuanLyHopDong extends State<Contracts_manager>{
           ),
         ),
         child: SingleChildScrollView(
+          padding: const EdgeInsets.only(
+            left: 16,
+            right: 16,
+            top: 20,
+            bottom: 120,
+          ),
           child: Column(
             children: [
 
@@ -240,9 +260,69 @@ class HienThiQuanLyHopDong extends State<Contracts_manager>{
 
             ],
           ),
+
         ),
 
+
+
       ),
+
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 8.0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            _buildNavItem(Icons.home, 'Trang chủ', true, () {}),
+            _buildNavItem(Icons.apartment, 'Tòa nhà', false, () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const PropertiesManageScreen(),
+                ),
+              );
+            }),
+            const SizedBox(width: 40),
+            _buildNavItem(Icons.people_outline, 'Người thuê', false, () {}),
+            _buildNavItem(Icons.person_outline, 'Cá nhân', false, () {}),
+          ],
+        ),
+      ),
+
+
     );
   }
 }
+
+//hàm cho bottom
+Widget _buildNavItem(
+    IconData icon,
+    String label,
+    bool isActive,
+    VoidCallback onTap,
+    ) {
+  return InkWell(
+    onTap: onTap,
+    borderRadius: BorderRadius.circular(12),
+    child: Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, color: isActive ? AppColors.primaryGreen : Colors.grey),
+          const SizedBox(height: 2),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 10,
+              color: isActive ? AppColors.primaryGreen : Colors.grey,
+              fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
