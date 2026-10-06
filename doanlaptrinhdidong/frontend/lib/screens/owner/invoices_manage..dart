@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/constants/app_colors.dart';
 import '../../widgets/owner/invoices_manage_w.dart';
+import '../../route/app_routes.dart';
 
 class Invoice_mana extends StatefulWidget {
   const Invoice_mana({super.key});
@@ -511,7 +512,9 @@ class _InvoiceManaState extends State<Invoice_mana> {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, AppRoutes.invoiceForm);
+                      },
                       icon: const Icon(Icons.add_circle_outline, color: Colors.white, size: 18),
                       label: const Text('Lập hóa đơn mới', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13)),
                       style: ElevatedButton.styleFrom(

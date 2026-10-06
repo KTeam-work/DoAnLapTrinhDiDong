@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import '../../core/constants/app_colors.dart';
+import '../../route/app_routes.dart';
 
 class review extends StatefulWidget
 {
@@ -47,9 +48,7 @@ class duyettin extends State<review>{
   @override
   Widget build(BuildContext context) {
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: AppColors.primaryGreen,
         appBar: AppBar(
           backgroundColor: AppColors.primaryGreen,
@@ -158,7 +157,19 @@ class duyettin extends State<review>{
           unselectedItemColor: Colors.grey,
           selectedFontSize: 12,
           unselectedFontSize: 12,
-          onTap: (index) {},
+          onTap: (index) {
+            switch(index){
+              case 0:
+                Navigator.pushNamed(context, AppRoutes.adminDashboard);
+                break;
+              case 1:
+                Navigator.pushNamed(context, AppRoutes.rewview);
+                break;
+              case 3:
+                Navigator.pushNamed(context, AppRoutes.usersManage);
+                break;
+            }
+          },
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.grid_view_rounded), label: "Dashboard"),
             BottomNavigationBarItem(icon: Icon(Icons.article_outlined), label: 'Quản lý'),
@@ -166,7 +177,7 @@ class duyettin extends State<review>{
             BottomNavigationBarItem(icon: Icon(Icons.person_outline_rounded), label: 'Tài khoản'),
           ],
         ),
-      ),
+
     );
   }
 }
@@ -252,16 +263,20 @@ class tinDang extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
             child: InkWell(
               borderRadius: BorderRadius.circular(16),
+              // Sự kiện bấm vào thẻ để xem chi tiết
               onTap: () {
-                if (onItemTap != null) {
-                  onItemTap!(item);
-                }
+                Navigator.pushNamed(
+                  context,
+                  AppRoutes.contentModeration,
+                  // Nếu trang chi tiết cần ID của phòng để hiển thị:
+                  // arguments: roomId,
+                );
               },
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: Row(
                   children: [
-                    // Hình ảnh tin đăng
+                    //hình ảnh tin đăng
                     ClipRRect(
                       borderRadius: BorderRadius.circular(12),
                       child: imageUrl.isNotEmpty
@@ -286,47 +301,25 @@ class tinDang extends StatelessWidget {
                     ),
                     const SizedBox(width: 12),
 
-                    // Thông tin chi tiết tin đăng
+                    //thông tin chi tiết tin đăng
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  title,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15,
-                                    color: Colors.black87,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: 6),
-
-                              // // Tag trạng thái
-                              // Container(
-                              //   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                              //   decoration: BoxDecoration(
-                              //     color: _getStatusBgColor(status),
-                              //     borderRadius: BorderRadius.circular(12),
-                              //   ),
-                              //   child: Text(
-                              //     status,
-                              //     style: TextStyle(
-                              //       color: _getStatusTextColor(status),
-                              //       fontSize: 11,
-                              //       fontWeight: FontWeight.bold,
-                              //     ),
-                              //   ),
-                              // ),
-                            ],
+                          // Tiêu đề
+                          Text(
+                            title,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                              color: Colors.black87,
+                            ),
                           ),
+                          const SizedBox(height: 4),
 
+                          // Địa chỉ
                           Row(
                             children: [
                               const Icon(Icons.location_on_outlined, size: 14, color: Colors.grey),
@@ -346,7 +339,7 @@ class tinDang extends StatelessWidget {
                           ),
                           const SizedBox(height: 3),
 
-                          //hiển thị người dùng
+                          // Người đăng
                           Row(
                             children: [
                               const Icon(Icons.person_outline_rounded, size: 14, color: Colors.grey),
@@ -365,40 +358,55 @@ class tinDang extends StatelessWidget {
                               ),
                             ],
                           ),
+                          const SizedBox(height: 8),
 
+                          // 3. Hàng chứa 2 nút bấm
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              ElevatedButton(style:ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.lightGreen,
-                                elevation: 0,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(16),
-                                )
-                              ),onPressed: (){}, child: const Text(
-                                "Duyệt",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: AppColors.primaryGreen,
-                                  fontWeight: FontWeight.bold,
+                              // Nút Từ chối
+                              OutlinedButton(
+                                style: OutlinedButton.styleFrom(
+                                  foregroundColor: Colors.red,
+                                  side: const BorderSide(color: Colors.red),
+                                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
+                                  minimumSize: const Size(0, 32),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  // Xử lý Từ chối tại đây
+                                },
+                                child: const Text("Từ chối", style: TextStyle(fontSize: 13)),
+                              ),
+                              const SizedBox(width: 8),
+
+                              // Nút Duyệt
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: AppColors.primaryGreen,
+                                  elevation: 0,
+                                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+                                  minimumSize: const Size(0, 32),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  // Xử lý Duyệt thành công tại đây
+                                },
+                                child: const Text(
+                                  "Duyệt",
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
-
-                              ),
-
-                              ElevatedButton(style:ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.red[100],
-                                  elevation: 0,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(16),
-                                  )
-                              ),onPressed: (){}, child: const  Text("Từ chối",style: TextStyle(fontSize: 16,color: Colors.red),),
-
-                              ),
-
-
                             ],
-                          )
+                          ),
                         ],
                       ),
                     ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/constants/app_colors.dart';
+import '../../route/app_routes.dart';
 
 // 1. Đổi sang StatefulWidget
 class User extends StatefulWidget {
@@ -176,7 +177,19 @@ class _UserState extends State<User> {
            unselectedItemColor: Colors.grey,
            selectedFontSize: 12,
            unselectedFontSize: 12,
-           onTap: (index) {},
+           onTap: (index) {
+             switch(index){
+               case 0:
+                 Navigator.pushNamed(context, AppRoutes.adminDashboard);
+                 break;
+               case 1:
+                 Navigator.pushNamed(context, AppRoutes.rewview);
+                 break;
+               case 3:
+                 Navigator.pushNamed(context, AppRoutes.usersManage);
+                 break;
+             }
+           },
            items: const [
              BottomNavigationBarItem(icon: Icon(Icons.grid_view_rounded), label: "Dashboard"),
              BottomNavigationBarItem(icon: Icon(Icons.article_outlined), label: 'Quản lý'),
