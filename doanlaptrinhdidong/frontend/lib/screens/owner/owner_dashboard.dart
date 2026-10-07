@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../widgets/owner/dashboard_card.dart';
+import '../../widgets/owner/owner_drawer.dart';
 import 'properties_manage.dart';
 
 class OwnerDashboard extends StatelessWidget {
@@ -11,8 +12,10 @@ class OwnerDashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: primaryColor,
+      drawer: const OwnerDrawer(),
       appBar: AppBar(
         backgroundColor: primaryColor,
+        iconTheme: const IconThemeData(color: Colors.white),
         title: const Text('Chủ trọ', style: TextStyle(color: Colors.white)),
         actions: [
           IconButton(

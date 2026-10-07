@@ -1,0 +1,24 @@
+*   [33mbf981aa[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Merge pull request #23 from KTeam-work/memberTV3_owner
+[31m|[m[32m\[m  
+[31m|[m *   [33mad0d793[m Merge branch 'main' of https://github.com/KTeam-work/DoAnLapTrinhDiDong into memberTV3_owner
+[31m|[m [33m|[m[31m\[m  
+[31m|[m [33m|[m[31m/[m  
+[31m|[m[31m/[m[33m|[m   
+* [33m|[m   [33me0b9c35[m Merge pull request #22 from KTeam-work/feature/MemberTV4_SwitchPaper
+[35m|[m[36m\[m [33m\[m  
+[35m|[m * [33m|[m [33m0456498[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/MemberTV4_SwitchPaper[m[33m, [m[1;31morigin/feature/MemberTV4_SwitchPaper[m[33m)[m create update
+* [36m|[m [33m|[m [33m9ede397[m Merge pull request #21 from KTeam-work/feature/MemberTV4_SwitchPaper
+[1;31m|[m[36m\[m[36m|[m [33m|[m 
+[1;31m|[m * [33m|[m [33m234ff8d[m create update
+[1;31m|[m[1;31m/[m [33m/[m  
+* [33m|[m   [33m6f33436[m[33m ([m[1;32mfeature/MemberTV4_invoice_detail_owner[m[33m)[m Merge pull request #20 from KTeam-work/feature/memberTV1_tuan3
+[1;33m|[m[1;34m\[m [33m\[m  
+[1;33m|[m * [33m|[m [33m8bccba6[m Add tenant room detail and favorite features
+* [1;34m|[m [33m|[m   [33m212fc2e[m Merge pull request #19 from KTeam-work/feature/MemberTV4_invoice_detail_owner
+[1;35m|[m[1;36m\[m [1;34m\[m [33m\[m  
+[1;35m|[m * [1;34m|[m [33m|[m [33m9b1b326[m create invoice_detail
+[1;35m|[m * [1;34m|[m [33m|[m [33mfcfef9e[m[33m ([m[1;31morigin/feature/MemberTV4_contract_members[m[33m, [m[1;32mfeature/MemberTV4_contract_members[m[33m)[m create contract_members
+[1;35m|[m * [1;34m|[m [33m|[m [33m919f637[m[33m ([m[1;31morigin/feature/MemberTV4_contract_detail_owner[m[33m, [m[1;32mfeature/MemberTV4_contract_detail_owner[m[33m)[m create contract_detail
+[1;35m|[m * [1;34m|[m [33m|[m [33m6698d11[m[33m ([m[1;31morigin/feature/MemberTV4_content_moderation[m[33m, [m[1;32mfeature/MemberTV4_content_moderation[m[33m)[m create content_moderation
+[1;35m|[m * [1;34m|[m [33m|[m [33m50d4bb0[m[33m ([m[1;31morigin/feature/MemberTV4_maintenance_detail[m[33m, [m[1;32mfeature/MemberTV4_maintenance_detail[m[33m)[m create maintenace_detail
+[1;35m|[m * [1;34m|[m [33m|[m [33md1165a1[m[33m ([m[1;31morigin/feature/MemberTV4_maintenance_manage[m[33m, [m[1;32mfeature/MemberTV4_maintenance_manage[m[33m)[m create maintenace

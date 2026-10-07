@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../widgets/owner/owner_drawer.dart';
 import 'owner_dashboard.dart';
 import 'property_form.dart';
 import 'rooms_manage.dart';
@@ -14,13 +15,25 @@ class PropertiesManageScreen extends StatelessWidget {
       length: 3,
       child: Scaffold(
         backgroundColor: const Color(0xFFF9F9FB),
+        drawer: const OwnerDrawer(),
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: () => Navigator.pop(context),
+          leading: Builder(
+            builder: (context) => IconButton(
+              icon: const Icon(Icons.menu, color: Colors.black),
+              tooltip: 'Mở danh mục',
+              onPressed: () => Scaffold.of(context).openDrawer(),
+            ),
           ),
+          actions: [
+            if (Navigator.canPop(context))
+              IconButton(
+                icon: const Icon(Icons.arrow_back, color: Colors.black),
+                tooltip: 'Quay lại',
+                onPressed: () => Navigator.pop(context),
+              ),
+          ],
           title: const Text(
             'Quản lý Bất động sản',
             style: TextStyle(

@@ -157,26 +157,77 @@ class _PostFormScreenState extends State<PostFormScreen> {
             ),
           ],
         ),
-        child: ElevatedButton(
-          onPressed: () {
-            // Xử lý lưu tin đăng
-            Navigator.pop(context);
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: primaryColor,
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+        child: Row(
+          children: [
+            Expanded(
+              child: OutlinedButton(
+                onPressed: () {
+                  // Lưu bài viết ở trạng thái Bản nháp
+                  Navigator.pop(context, {
+                    'title': 'Cho thuê phòng mới full tiện nghi',
+                    'room': 'Phòng 102 - Chung cư Mini Q7',
+                    'price': '3.800.000đ/tháng',
+                    'views': 0,
+                    'likes': 0,
+                    'date': 'Hôm nay',
+                    'status': 'draft',
+                    'image': 'frontend/assets/images/anhPhongDemo.jpg',
+                  });
+                },
+                style: OutlinedButton.styleFrom(
+                  side: BorderSide(color: primaryColor),
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: Text(
+                  'LƯU NHÁP',
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                    color: primaryColor,
+                  ),
+                ),
+              ),
             ),
-          ),
-          child: const Text(
-            'LƯU & ĐĂNG TIN',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+            const SizedBox(width: 12),
+            Expanded(
+              flex: 2,
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  // Lưu và gửi duyệt cho Admin
+                  Navigator.pop(context, {
+                    'title': 'Cho thuê phòng mới full tiện nghi',
+                    'room': 'Phòng 102 - Chung cư Mini Q7',
+                    'price': '3.800.000đ/tháng',
+                    'views': 0,
+                    'likes': 0,
+                    'date': 'Vừa gửi',
+                    'status': 'pending',
+                    'submitNote': 'Đang chờ Quản trị viên duyệt (tiêu chuẩn PCCC & giá)',
+                    'image': 'frontend/assets/images/anhPhongDemo.jpg',
+                  });
+                },
+                icon: const Icon(Icons.send_rounded, color: Colors.white, size: 16),
+                label: const Text(
+                  'GỬI ADMIN DUYỆT',
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: primaryColor,
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

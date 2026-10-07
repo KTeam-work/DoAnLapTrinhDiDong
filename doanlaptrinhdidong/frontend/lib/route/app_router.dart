@@ -15,7 +15,7 @@ import '../screens/owner/contract_members.dart';
 import '../screens/owner/termination_screen.dart';
 import '../screens/owner/invoices_manage..dart';
 import '../screens/owner/invoice_form.dart';
-import '../screens/owner/ invoice_detail_owner.dart';
+import '../screens/owner/invoice_detail_owner.dart';
 import '../screens/owner/utility_readings.dart';
 import '../screens/owner/utility_history.dart';
 import '../screens/owner/maintenance_manage.dart';
